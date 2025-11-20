@@ -1,0 +1,121 @@
+2025-11-16 17:55:12 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 17:55:13 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 17:55:13 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 17:55:13 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 17:55:13 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 17:57:32 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 17:57:32 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 17:57:32 [INFO] __main__: Size after cleaning: 92688 rows
+2025-11-16 17:57:32 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 17:57:33 [INFO] __main__: Unmatched after dictionary mapping: 30465 entries
+2025-11-16 17:57:33 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 17:57:42 [INFO] __main__: Still unmatched after fuzzy: 13219 rows
+2025-11-16 17:57:42 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 17:57:42 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 17:57:42 [INFO] __main__: Final dataset size: 79469 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 17:57:42 [INFO] __main__: Unique standardized majors: 131
+2025-11-16 17:57:42 [INFO] __main__: Data preparation completed successfully!
+2025-11-16 18:43:05 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 18:43:05 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 18:43:05 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 18:43:05 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 18:43:05 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 18:45:26 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 18:45:26 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 18:45:26 [INFO] __main__: Size after cleaning: 92688 rows
+2025-11-16 18:45:26 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 18:45:26 [INFO] __main__: Unmatched after dictionary mapping: 30465 entries
+2025-11-16 18:45:26 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 18:45:35 [INFO] __main__: Still unmatched after fuzzy: 13219 rows
+2025-11-16 18:45:35 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 18:45:35 [INFO] __main__: Removed 1 rows belonging to rare majors.
+2025-11-16 18:45:35 [INFO] __main__: Remaining majors after filtering: 130 unique categories.
+2025-11-16 18:45:36 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 18:45:36 [INFO] __main__: Final dataset size: 79469 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 18:45:36 [INFO] __main__: Unique standardized majors: 131
+2025-11-16 18:45:36 [INFO] __main__: Data preparation completed successfully!
+2025-11-16 18:53:22 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 18:53:22 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 18:53:22 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 18:53:22 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 18:53:22 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 18:55:50 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 18:55:50 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 18:55:50 [INFO] __main__: Size after cleaning: 92688 rows
+2025-11-16 18:55:50 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 18:55:50 [INFO] __main__: Unmatched after dictionary mapping: 30465 entries
+2025-11-16 18:55:50 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 18:55:59 [INFO] __main__: Still unmatched after fuzzy: 13219 rows
+2025-11-16 18:55:59 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 18:55:59 [INFO] __main__: Pre-final dataset size: 79469 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 18:55:59 [INFO] __main__: Removed 1 rows belonging to rare majors.
+2025-11-16 18:55:59 [INFO] __main__: Remaining majors after filtering: 130 unique categories.
+2025-11-16 18:56:00 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 18:56:00 [INFO] __main__: Final dataset size: 79468 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 18:56:00 [INFO] __main__: Unique standardized majors: 130
+2025-11-16 18:56:00 [INFO] __main__: Data preparation completed successfully!
+2025-11-16 19:11:22 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 19:11:22 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 19:11:22 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 19:11:22 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 19:11:22 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 19:14:02 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 19:14:02 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 19:14:02 [INFO] __main__: Size after cleaning: 92688 rows
+2025-11-16 19:14:02 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 19:14:02 [INFO] __main__: Unmatched after dictionary mapping: 30465 entries
+2025-11-16 19:14:02 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 19:14:12 [INFO] __main__: Still unmatched after fuzzy: 13219 rows
+2025-11-16 19:14:12 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 19:14:12 [INFO] __main__: Pre-final dataset size: 79469 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 19:14:12 [INFO] __main__: Removed 5 rows belonging to rare majors.
+2025-11-16 19:14:12 [INFO] __main__: Remaining majors after filtering: 128 unique categories.
+2025-11-16 19:14:13 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 19:14:13 [INFO] __main__: Final dataset size: 79464 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 19:14:13 [INFO] __main__: Unique standardized majors: 128
+2025-11-16 19:14:13 [INFO] __main__: Data preparation completed successfully!
+2025-11-16 19:51:26 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 19:51:26 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 19:51:26 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 19:51:26 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 19:51:26 [INFO] __main__: Checking for duplicate rows before RIASEC percentage calculation...
+2025-11-16 19:51:26 [WARNING] __main__: Found 63 duplicate rows. Removing duplicates...
+2025-11-16 19:51:26 [INFO] __main__: Removed 63 duplicates. Row count reduced to 92891.
+2025-11-16 19:51:26 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 19:53:49 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 19:53:49 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 19:53:49 [INFO] __main__: Size after cleaning: 92625 rows
+2025-11-16 19:53:49 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 19:53:49 [INFO] __main__: Unmatched after dictionary mapping: 30451 entries
+2025-11-16 19:53:49 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 19:53:58 [INFO] __main__: Still unmatched after fuzzy: 13213 rows
+2025-11-16 19:53:58 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 19:53:58 [INFO] __main__: Pre-final dataset size: 79412 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 19:53:58 [INFO] __main__: Removed 5 rows belonging to rare majors.
+2025-11-16 19:53:58 [INFO] __main__: Remaining majors after filtering: 128 unique categories.
+2025-11-16 19:53:58 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 19:53:58 [INFO] __main__: Final dataset size: 79407 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 19:53:58 [INFO] __main__: Unique standardized majors: 128
+2025-11-16 19:53:58 [INFO] __main__: Data preparation completed successfully!
+2025-11-16 20:00:03 [INFO] __main__: Data loaded successfully with shape (145828, 94)
+2025-11-16 20:00:03 [INFO] __main__: Checking for duplicate rows in the raw dataset...
+2025-11-16 20:00:04 [INFO] __main__: No duplicate rows found in the raw dataset.
+2025-11-16 20:00:04 [INFO] __main__: Retained 49 columns for processing
+2025-11-16 20:00:04 [INFO] __main__: Found 52874 rows with missing 'major' values.
+2025-11-16 20:00:04 [INFO] __main__: Dropped missing majors: 145828 → 92954 rows remaining.
+2025-11-16 20:00:04 [INFO] __main__: Calculating RIASEC percentage scores...
+2025-11-16 20:02:32 [INFO] __main__: RIASEC percentage columns added.
+2025-11-16 20:02:32 [INFO] __main__: Cleaning and normalizing major names...
+2025-11-16 20:02:33 [INFO] __main__: Size after cleaning: 92688 rows
+2025-11-16 20:02:33 [INFO] __main__: Applying direct mapping from major dictionary...
+2025-11-16 20:02:33 [INFO] __main__: Unmatched after dictionary mapping: 30465 entries
+2025-11-16 20:02:33 [INFO] __main__: Starting fuzzy matching for remaining unmatched majors...
+2025-11-16 20:02:43 [INFO] __main__: Still unmatched after fuzzy: 13219 rows
+2025-11-16 20:02:43 [INFO] __main__: Removing uncategorized or unmatched entries...
+2025-11-16 20:02:44 [INFO] __main__: Pre-final dataset size: 79469 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 20:02:44 [INFO] __main__: Removed 5 rows belonging to rare majors.
+2025-11-16 20:02:44 [INFO] __main__: Remaining majors after filtering: 128 unique categories.
+2025-11-16 20:02:44 [INFO] __main__: Final dataset saved → data/final_data.csv
+2025-11-16 20:02:44 [INFO] __main__: Final dataset size: 79464 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
+2025-11-16 20:02:44 [INFO] __main__: Unique standardized majors: 128
+2025-11-16 20:02:44 [INFO] __main__: Data preparation completed successfully!

@@ -1,0 +1,12 @@
+2025-11-20 14:23:37 [INFO] __main__: ==== Starting model training pipeline ====
+2025-11-20 14:23:37 [INFO] __main__: Loading dataset from data/final_data_48.csv
+2025-11-20 14:23:37 [INFO] __main__: Dataset loaded successfully — rows=79357, cols=49
+2025-11-20 14:23:37 [INFO] __main__: Detected 48 RIASEC features
+2025-11-20 14:23:37 [INFO] __main__: Label encoding complete — classes=128
+2025-11-20 14:23:37 [INFO] __main__: Data split complete — train=63485, test=15872
+2025-11-20 14:23:37 [INFO] __main__: Training Logistic Regression model...
+2025-11-20 14:24:42 [INFO] __main__: Model training completed successfully
+2025-11-20 14:24:42 [INFO] __main__: Model saved to model/logreg_model.pkl
+2025-11-20 14:24:42 [INFO] __main__: Label encoder saved to model/label_encoder.pkl
+2025-11-20 14:24:42 [INFO] __main__: Feature list saved to model/feature_list.json
+2025-11-20 14:24:42 [INFO] __main__: ==== Training pipeline completed in 64.78 seconds ====
