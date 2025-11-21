@@ -119,3 +119,6 @@
 2025-11-16 20:02:44 [INFO] __main__: Final dataset size: 79464 rows, Columns: ['R_pct', 'I_pct', 'A_pct', 'S_pct', 'E_pct', 'C_pct', 'major_standard']
 2025-11-16 20:02:44 [INFO] __main__: Unique standardized majors: 128
 2025-11-16 20:02:44 [INFO] __main__: Data preparation completed successfully!
+2025-11-21 11:30:00 [INFO] prepare_data: === Starting data preparation: /private/var/folders/6b/3q8v8r2x31ldf94c9g2phby40000gn/T/pytest-of-alenatsibets/pytest-0/test_prepare_data0/raw.csv ===
+2025-11-21 11:30:00 [INFO] prepare_data: Loaded dataset shape: (1, 1)
+2025-11-21 11:30:00 [INFO] prepare_data: After duplicate removal: (1, 1)
