@@ -25,7 +25,7 @@ This project implements an end-to-end career path prediction system, built on st
 
 The system predicts top-5 most suitable career categories, provides probabilities, and presents an intuitive UI where users rate 48 activities on a 1–5 scale.
 
-### 🚀 Quick Start (Local Deployment)
+### Quick Start (Local Deployment)
 
 **1. Create virtual environment**
 
