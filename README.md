@@ -83,15 +83,15 @@ CI runs on every:
 
 It performs:
 
-*   ✔ Install dependencies
+*   Install dependencies
     
-*   ✔ Run tests
+*   Run tests
     
-*   ✔ Compute coverage
+*   Compute coverage
     
-*   ✔ Enforce coverage threshold
+*   Enforce coverage threshold
         
-*   ✔ Trigger Streamlit auto-deploy
+*   Trigger Streamlit auto-deploy
     
 
 Workflow file: .github/workflows/ci.yml
