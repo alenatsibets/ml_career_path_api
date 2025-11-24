@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import shap
 import joblib
-import json
 import functools
 
 
@@ -15,15 +13,6 @@ def load_model():
 @functools.lru_cache()
 def load_encoder():
     return joblib.load("model/label_encoder.pkl")
-
-
-@functools.lru_cache()
-def load_features():
-    try:
-        with open("model/feature_list.json", "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return [f"F{i}" for i in range(48)]
 
 
 # ---------------- REAL RIASEC ITEM DESCRIPTIONS ---------------- #
@@ -97,14 +86,7 @@ def predict_top5(model, encoder, input_norm):
     return encoder.inverse_transform(idx), probs[idx]
 
 
-def compute_shap(model, input_norm):
-    explainer = shap.LinearExplainer(model, input_norm)
-    shap_values = explainer.shap_values(input_norm)
-    return explainer.expected_value, shap_values
-
-
 # ---------------- STREAMLIT UI (NOT USED IN UNIT TESTS) ---------------- #
-
 def run_app():
     st.set_page_config(page_title="Career Path Predictor", layout="wide")
 
@@ -120,7 +102,6 @@ def run_app():
     - **5 = Enjoy**  
     """)
 
-    features = load_features()
     model = load_model()
     encoder = load_encoder()
 
