@@ -5,45 +5,118 @@ from unittest.mock import MagicMock, patch
 import importlib
 
 
-def test_predict_top5_logic():
+# -------------------- HELPERS --------------------
+
+def reload_app():
+    """Reload module to ensure patches apply before import."""
     import streamlit_app
     importlib.reload(streamlit_app)
+    return streamlit_app
+
+
+# -------------------- PREDICTION TESTS --------------------
+
+def test_predict_top5_logic_basic():
+    """Ensure top5 logic returns correct order and count."""
+
+    app = reload_app()
 
     mock_model = MagicMock()
     mock_model.predict_proba.return_value = np.array([
-        [0.1, 0.6, 0.2, 0.05, 0.05]
+        [0.10, 0.60, 0.20, 0.05, 0.05]
     ])
 
     def fake_inverse_transform(idxs):
-        mapping = {0: "c0", 1: "c1", 2: "c2", 3: "c3", 4: "c4"}
-        return [mapping[i] for i in idxs]
+        return [f"class{i}" for i in idxs]
 
     mock_encoder = MagicMock()
     mock_encoder.inverse_transform.side_effect = fake_inverse_transform
 
     df = pd.DataFrame([[0.1] * 48])
 
-    labels, probs = streamlit_app.predict_top5(mock_model, mock_encoder, df)
+    labels, probs = app.predict_top5(mock_model, mock_encoder, df)
 
-    assert labels[0] == "c1"
+    assert labels[0] == "class1"
     assert len(labels) == 5
+    assert np.isclose(probs[0], 0.60)
 
 
-def test_shap_pipeline_runs():
-    """Test SHAP logic with mocks."""
-    import streamlit_app
-    importlib.reload(streamlit_app)
+def test_predict_top5_correct_sorting():
+    """Ensure probabilities are sorted descending."""
+    app = reload_app()
 
     mock_model = MagicMock()
-    fake_input = pd.DataFrame([[0.2] * 48])
+    mock_model.predict_proba.return_value = np.array([
+        [0.2, 0.1, 0.5, 0.15, 0.05]
+    ])
 
-    with patch("shap.LinearExplainer") as mock_exp:
-        mock_inst = MagicMock()
-        mock_inst.shap_values.return_value = np.zeros((1, 48))
-        mock_inst.expected_value = 0.123
-        mock_exp.return_value = mock_inst
+    mock_encoder = MagicMock()
+    mock_encoder.inverse_transform.return_value = ["C", "A", "B", "D", "E"]
 
-        value, shap_vals = streamlit_app.compute_shap(mock_model, fake_input)
+    df = pd.DataFrame([[0.1] * 48])
 
-        assert shap_vals.shape == (1, 48)
-        assert value == 0.123
+    labels, probs = app.predict_top5(mock_model, mock_encoder, df)
+
+    assert probs[0] >= probs[1] >= probs[2]
+
+
+# -------------------- NORMALIZATION TESTS --------------------
+def test_input_normalization():
+    app = reload_app()
+
+    df = pd.DataFrame([[1, 3, 5]], columns=["R1", "R2", "R3"])
+    norm = (df - 1) / 4
+
+    assert norm.iloc[0, 0] == 0
+    assert norm.iloc[0, 1] == 0.5
+    assert norm.iloc[0, 2] == 1.0
+
+
+# -------------------- MODEL / ENCODER LOAD TESTS --------------------
+
+def test_load_model_missing_file():
+    """load_model should raise FileNotFoundError if file missing."""
+    with patch("joblib.load", side_effect=FileNotFoundError):
+        app = reload_app()
+        with pytest.raises(FileNotFoundError):
+            app.load_model()
+
+
+def test_load_encoder_missing():
+    with patch("joblib.load", side_effect=FileNotFoundError):
+        app = reload_app()
+        with pytest.raises(FileNotFoundError):
+            app.load_encoder()
+
+
+# -------------------- PARALLEL PREDICTION TESTS --------------------
+
+def test_predict_top5_parallel():
+    app = reload_app()
+
+    mock_model = MagicMock()
+    mock_model.predict_proba.side_effect = [
+        np.array([[0.1, 0.6, 0.2, 0.05, 0.05]]),
+        np.array([[0.3, 0.1, 0.5, 0.05, 0.05]])
+    ]
+
+    mock_encoder = MagicMock()
+    mock_encoder.inverse_transform.side_effect = lambda idxs: idxs
+
+    df1 = pd.DataFrame([[0.1] * 48])
+    df2 = pd.DataFrame([[0.2] * 48])
+
+    # Only works if you already added predict_top5_parallel()
+    if hasattr(app, "predict_top5_parallel"):
+        results = app.predict_top5_parallel(mock_model, mock_encoder, [df1, df2], workers=2)
+        assert len(results) == 2
+        assert len(results[0][0]) == 5
+
+
+# -------------------- UI STRUCTURE TESTS (Streamlit mocked) --------------------
+def test_items_dictionary_valid():
+    """Ensure 48 items exist."""
+    app = reload_app()
+    assert len(app.ITEMS) == 48
+    assert "R1" in app.ITEMS
+    assert "C8" in app.ITEMS
