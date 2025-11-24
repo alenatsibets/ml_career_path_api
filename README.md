@@ -6,7 +6,7 @@ A Machine Learning–Powered RIASEC Career Recommender
 
 ### 📌 Overview
 
-This project implements an end-to-end career path prediction system, built on structured psychometric (RIASEC) questionnaire responses.It includes:
+This project implements an end-to-end career path prediction system, built on structured psychometric (RIASEC) questionnaire responses. It includes:
 
 *   Data cleaning & preprocessing pipeline (48-item RIASEC questionnaire)
     
