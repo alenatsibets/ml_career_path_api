@@ -30,6 +30,7 @@ The system predicts top-5 most suitable career categories, provides probabilitie
 **1. Create virtual environment**
 
 `   python3 -m venv .venv
+    
     source .venv/bin/activate   `
 
 **2. Install dependencies**
@@ -70,7 +71,17 @@ With coverage:
 
 A CI step enforces minimum 70% coverage:
 
-`   - name: Enforce minimum test coverage    run: |      coverage_total=$(coverage report | awk 'END{print $4}' | sed 's/%//')      if (( $(echo "$coverage_total < 70" | bc -l) )); then        exit 1      fi   `
+`   - name: Enforce minimum test coverage    
+
+run: |      coverage_total=$(coverage report | awk 'END{print $4}' | sed 's/%//')      
+
+if (( $(echo "$coverage_total < 70" | bc -l) )); 
+
+then        
+
+exit 1      
+
+fi   `
 
 ### CI/CD Pipeline (GitHub Actions)
 
@@ -127,7 +138,11 @@ POST /predict
 
 **Response:**
 
-`   {    "top5_predictions": [      {"label": "Nursing", "probability": 0.62},      {"label": "Biology", "probability": 0.21},      ...    ]  }   `
+`   {    "top5_predictions": [      
+
+{"label": "Nursing", "probability": 0.62},     
+
+{"label": "Biology", "probability": 0.21},      ...    ]  }   `
 
 Interactive docs available at: http://localhost:8000/docs
 
