@@ -1,60 +1,41 @@
-resource "aws_ecs_cluster" "this" {
-  name = "${var.project_name}-cluster"
-}
+resource "aws_service_discovery_service" "ml" {
+  name = "ml"
 
-resource "aws_security_group" "ml_api_sg" {
-  name        = "${var.project_name}-sg"
-  description = "Security group for ml-api service"
-  vpc_id      = aws_vpc.main.id
+  dns_config {
+    namespace_id = local.service_discovery_namespace_id
 
-  # Inbound: allow HTTP on 8080 from anywhere (for now)
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    dns_records {
+      ttl  = 10
+      type = "A"
+    }
+
+    routing_policy = "MULTIVALUE"
   }
 
-  # Outbound: allow everything
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "${var.project_name}-sg"
+  health_check_custom_config {
+    failure_threshold = 1
   }
 }
 
-resource "aws_cloudwatch_log_group" "ml_api" {
-  name              = "/ecs/${var.project_name}"
-  retention_in_days = 7
-
-  tags = {
-    Name = "${var.project_name}-logs"
-  }
-}
-
-resource "aws_ecs_task_definition" "ml_api" {
-  family                   = "${var.project_name}-task"
+resource "aws_ecs_task_definition" "ml" {
+  family                   = "${var.name}-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  cpu                      = "512"
-  memory                   = "1024"
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  cpu                      = tostring(var.cpu)
+  memory                   = tostring(var.memory)
+
+  execution_role_arn = aws_iam_role.task_execution.arn
+  task_role_arn      = aws_iam_role.task_role.arn
 
   container_definitions = jsonencode([
     {
-      name      = "ml-api"
-      image     = "${aws_ecr_repository.ml_api.repository_url}:latest"
+      name      = var.name
+      image     = var.image
       essential = true
 
       portMappings = [
         {
-          containerPort = 8080
-          hostPort      = 8080
+          containerPort = var.container_port
           protocol      = "tcp"
         }
       ]
@@ -62,8 +43,8 @@ resource "aws_ecs_task_definition" "ml_api" {
       logConfiguration = {
         logDriver = "awslogs"
         options = {
-          awslogs-group         = aws_cloudwatch_log_group.ml_api.name
-          awslogs-region        = var.aws_region
+          awslogs-group         = aws_cloudwatch_log_group.ml.name
+          awslogs-region        = var.region
           awslogs-stream-prefix = "ecs"
         }
       }
@@ -71,20 +52,20 @@ resource "aws_ecs_task_definition" "ml_api" {
   ])
 }
 
-resource "aws_ecs_service" "ml_api" {
-  name            = "${var.project_name}-service"
-  cluster         = aws_ecs_cluster.this.id
-  task_definition = aws_ecs_task_definition.ml_api.arn
-  desired_count   = 1
+resource "aws_ecs_service" "ml" {
+  name            = "${var.name}-svc"
+  cluster         = local.ecs_cluster_name
+  task_definition = aws_ecs_task_definition.ml.arn
+  desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [aws_subnet.public_a.id, aws_subnet.public_b.id]
-    security_groups = [aws_security_group.ml_api_sg.id]
-    assign_public_ip = true
+    subnets         = local.private_subnet_ids
+    security_groups = [local.ml_sg_id]
+    assign_public_ip = "DISABLED"
   }
 
-  depends_on = [
-    aws_cloudwatch_log_group.ml_api
-  ]
+  service_registries {
+    registry_arn = aws_service_discovery_service.ml.arn
+  }
 }
