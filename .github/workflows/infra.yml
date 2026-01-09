@@ -50,3 +50,8 @@ jobs:
         if: inputs.action == 'apply'
         working-directory: infra
         run: terraform apply -auto-approve -var="image=${{ inputs.image }}"
+
+      - name: Destroy
+        if: ${{ inputs.action == 'destroy' }}
+        working-directory: infra
+        run: terraform destroy -auto-approve -var="image=${{ inputs.image }}"
