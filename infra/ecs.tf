@@ -62,7 +62,7 @@ resource "aws_ecs_service" "ml" {
   network_configuration {
     subnets         = local.private_subnet_ids
     security_groups = [local.ml_sg_id]
-    assign_public_ip = "DISABLED"
+    assign_public_ip = false
   }
 
   service_registries {
