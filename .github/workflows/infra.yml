@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "plan or apply"
+        description: "plan, apply, or destroy"
         required: true
         default: "plan"
         type: choice
-        options: [plan, apply]
+        options: [plan, apply, destroy]
       image:
         description: "Full ECR image URI (repo:tag)"
         required: true
@@ -50,3 +50,8 @@ jobs:
         if: inputs.action == 'apply'
         working-directory: infra
         run: terraform apply -auto-approve -var="image=${{ inputs.image }}"
+
+      - name: Destroy
+        if: ${{ inputs.action == 'destroy' }}
+        working-directory: infra
+        run: terraform destroy -auto-approve -var="image=${{ inputs.image }}"
